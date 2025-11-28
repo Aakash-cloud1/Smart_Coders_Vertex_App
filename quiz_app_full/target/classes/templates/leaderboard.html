@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Leaderboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: #3385ff;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        td {
+            text-align: center;
+            padding: 12px;
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover td {
+            background: #f3f7ff;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px 16px;
+            background: #3385ff;
+            color: white;
+            border-radius: 8px;
+            transition: 0.25s;
+        }
+
+        a:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h2>Leaderboard for Quiz: <span th:text="${quizId}"></span></h2>
+
+<div th:if="${attempts.size() == 0}">
+    <p>No attempts yet for this quiz.</p>
+</div>
+
+<table th:if="${attempts.size() > 0}">
+    <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>Score</th>
+        <th>Total</th>
+        <th>Timestamp</th>
+    </tr>
+
+    <tr th:each="a, i : ${attempts}">
+        <td th:text="${i.index + 1}"></td>
+        <td th:text="${a.username}"></td>
+        <td th:text="${a.score}"></td>
+        <td th:text="${a.total}"></td>
+        <td th:text="${a.timestamp}"></td>
+    </tr>
+</table>
+
+<div style="text-align:center; margin-top: 20px;">
+
+    <a href="/available-quizzes"
+       th:if="${session.role == 'STUDENT'}">Choose Another Quiz</a>
+
+    <a href="/student-dashboard"
+       th:if="${session.role == 'STUDENT'}">Back to Dashboard</a>
+
+    <a href="/admin-check-my-quizzes"
+       th:if="${session.role == 'ADMIN'}">Back to My Quizzes</a>
+
+    <a href="/admin-dashboard"
+       th:if="${session.role == 'ADMIN'}">Back to Dashboard</a>
+
+</div>
+
+
+</body>
+</html>

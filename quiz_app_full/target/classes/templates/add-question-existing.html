@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Question</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #222;
+            font-size: 24px;
+        }
+
+        form {
+            width: 450px;
+            background: #fff;
+            padding: 25px 30px;
+            margin: 35px auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #3d7ff2;
+            box-shadow: 0 0 5px rgba(61,127,242,0.4);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: #3d7ff2;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #2e6adc;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Add Question to Quiz [[${quizId}]]</h2>
+
+<form action="/add-question-existing" method="post">
+
+    <input type="hidden" name="quizId" th:value="${quizId}"/>
+
+    <label>Question Text:</label>
+    <input type="text" name="text" required>
+
+    <label>Option A:</label>
+    <input type="text" name="optionA" required>
+
+    <label>Option B:</label>
+    <input type="text" name="optionB" required>
+
+    <label>Option C:</label>
+    <input type="text" name="optionC" required>
+
+    <label>Option D:</label>
+    <input type="text" name="optionD" required>
+
+    <label>Correct Index (0–3):</label>
+    <input type="number" name="correctIndex" min="0" max="3" required>
+
+    <button type="submit">Add Question</button>
+</form>
+
+</body>
+</html>

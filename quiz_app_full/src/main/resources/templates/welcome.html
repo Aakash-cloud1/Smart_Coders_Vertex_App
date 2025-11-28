@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 16px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 30px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        button {
+            background: #3385ff;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Welcome to Quiz Application Management System</h1>
+
+    <form action="/home" method="get">
+        <button type="submit">Enter</button>
+    </form>
+</div>
+
+</body>
+</html>

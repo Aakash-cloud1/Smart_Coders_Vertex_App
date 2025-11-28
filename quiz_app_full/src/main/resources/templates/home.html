@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <style>
+        :root {
+            --bg: #eef6ff;
+            --card: #ffffff;
+            --accent: #3385ff;
+            --accent-hover: #2268d8;
+            --muted: #6b7280;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Inter, Roboto, "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(180deg, var(--bg), #f7fbff 60%);
+            color: #0f1724;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero {
+            width: 100%;
+            padding: 28px;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 36px;
+            font-weight: 700;
+            color: #1f2d3d;
+            line-height: 1.1;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 32px rgba(15, 23, 36, 0.08);
+            border: 1px solid #e5e9f2;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.15s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(51, 133, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #dbe8ff;
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: #e8f1ff;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="hero">
+        <h1>Welcome to the Quiz Platform</h1>
+        <div class="card">
+            <div class="actions">
+                <a class="btn btn-primary" href="/login">Login</a>
+                <a class="btn btn-secondary" href="/register">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

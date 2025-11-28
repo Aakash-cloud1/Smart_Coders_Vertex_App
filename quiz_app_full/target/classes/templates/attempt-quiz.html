@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Attempt Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 25px;
+            color: #1f2d3d;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        #quizForm {
+            width: 550px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        #qtext {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        label {
+            display: block;
+            background: #fafbfc;
+            border: 1px solid #d4d7db;
+            padding: 12px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            font-size: 16px;
+            transition: 0.25s ease;
+        }
+
+        label:hover {
+            background: #e7f1ff;
+            border-color: #3385ff;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        #timer {
+            font-weight: bold;
+            color: #e63946;
+            font-size: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border: none;
+            background: #3385ff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        let questions = [];
+        let index = 0;
+
+        function loadQuestion() {
+            if (index >= questions.length) {
+                document.getElementById("quizForm").submit();
+                return;
+            }
+
+            let q = questions[index];
+
+            document.getElementById("qtext").innerText = q.text;
+            document.getElementById("optA").innerText = q.optionA;
+            document.getElementById("optB").innerText = q.optionB;
+            document.getElementById("optC").innerText = q.optionC;
+            document.getElementById("optD").innerText = q.optionD;
+
+            document.querySelectorAll("input[name='answer']").forEach(r => r.checked = false);
+
+            startTimer(q.timer);
+        }
+
+        let timerInterval;
+
+        function startTimer(seconds) {
+            clearInterval(timerInterval);
+            let t = seconds;
+            document.getElementById("timer").innerText = t;
+
+            timerInterval = setInterval(() => {
+                t--;
+                document.getElementById("timer").innerText = t;
+
+                if (t <= 0) {
+                    saveAnswer();
+                }
+            }, 1000);
+        }
+
+        function saveAnswer() {
+            let selected = document.querySelector("input[name='answer']:checked");
+            let val = selected ? selected.value : "-1";
+
+            let hidden = document.createElement("input");
+            hidden.type = "hidden";
+            hidden.name = "q" + index;
+            hidden.value = val;
+            document.getElementById("quizForm").appendChild(hidden);
+
+            index++;
+            loadQuestion();
+        }
+    </script>
+
+</head>
+<body>
+
+<h2>Attempting Quiz: <span th:text="${quizId}"></span></h2>
+
+<form id="quizForm" action="/submit-attempt" method="post">
+
+    <input type="hidden" name="quizId" th:value="${quizId}">
+
+    <h3 id="qtext"></h3>
+
+    <label><input type="radio" name="answer" value="1"> <span id="optA"></span></label>
+    <label><input type="radio" name="answer" value="2"> <span id="optB"></span></label>
+    <label><input type="radio" name="answer" value="3"> <span id="optC"></span></label>
+    <label><input type="radio" name="answer" value="4"> <span id="optD"></span></label>
+
+    <p>⏳ Time Left: <span id="timer"></span> sec</p>
+
+    <button type="button" onclick="saveAnswer()">Next</button>
+
+</form>
+
+<script>
+    questions = /*[[${questions}]]*/ [];
+    loadQuestion();
+</script>
+
+</body>
+</html>

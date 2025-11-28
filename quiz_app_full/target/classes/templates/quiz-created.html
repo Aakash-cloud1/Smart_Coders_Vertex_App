@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Created</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 30px;
+            color: #1f2d3d;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #444;
+        }
+
+        .message {
+            font-size: 17px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 22px;
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .btn:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h2>🎉 Quiz Created Successfully!</h2>
+
+<p>Your quiz has been created and all questions are saved.</p>
+
+<p class="message" th:text="${message}"></p>
+
+<a href="/admin-dashboard" class="btn">Go to Dashboard</a>
+
+</body>
+</html>

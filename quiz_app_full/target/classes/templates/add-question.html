@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Question</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        form {
+            width: 450px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 12px;
+            display: inline-block;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.2s ease;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #4A90E2;
+            box-shadow: 0 0 4px rgba(74,144,226,0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #357ABD;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Add Question [[${current}]] of [[${total}]]</h2>
+
+<form action="/add-question" method="post">
+
+    <label>Question:</label>
+    <input type="text" name="text" required>
+
+    <label>Option A:</label>
+    <input type="text" name="optionA" required>
+
+    <label>Option B:</label>
+    <input type="text" name="optionB" required>
+
+    <label>Option C:</label>
+    <input type="text" name="optionC" required>
+
+    <label>Option D:</label>
+    <input type="text" name="optionD" required>
+
+    <label>Correct Option Index (0–3):</label>
+    <input type="number" name="correctIndex" min="0" max="3" required>
+
+    <button type="submit">Save Question</button>
+</form>
+
+</body>
+</html>
