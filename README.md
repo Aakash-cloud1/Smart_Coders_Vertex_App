@@ -121,3 +121,8 @@ Thymeleaf UI pages.
 
 ## License
 This project is for academic and educational use only.
+
+## Limitations
+- Only single correct answer type can be created because the json structure supports to only one type of object.
+- Correct answrs are stored without masking or encryption, so anyone having access to JSON file can view them.
+- There is no option for shuffling the choices of a question to minimize cheating.
