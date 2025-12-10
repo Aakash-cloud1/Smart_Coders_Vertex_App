@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertex Microservices</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            border: 2px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            border-color: #0366d6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #0366d6;
+        }
+
+        .card p {
+            color: #586069;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Welcome to Vertex Microservice</h1>
+        <div class="menu">
+            <a href="/welcome" class="card">
+                <h2>Quiz Application</h2>
+                <p>Take exams and manage quizzes</p>
+            </a>
+            <a href="/qr-generator" class="card">
+                <h2>QR CODE Generator</h2>
+                <p>Generate QR codes for any URL</p>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

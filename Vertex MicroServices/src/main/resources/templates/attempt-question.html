@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Attempt Question</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #222;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        form {
+            width: 500px;
+            background: #fff;
+            padding: 30px 35px;
+            margin: 35px auto;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f2d3d;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border: 1px solid #d5d9de;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            background: #fafbfc;
+            font-size: 16px;
+        }
+
+        label:hover {
+            background: #e7f1ff;
+            border-color: #3385ff;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 13px;
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Quiz ID: <span th:text="${quizId}"></span></h2>
+
+<h3>Question [[${index}]] of [[${total}]]</h3>
+
+<form action="/attempt-submit" method="post">
+
+    <p th:text="${question.text}"></p>
+
+    <label>
+        <input type="radio" name="selected" value="0">
+        <span th:text="${question.optionA}"></span>
+    </label>
+
+    <label>
+        <input type="radio" name="selected" value="1">
+        <span th:text="${question.optionB}"></span>
+    </label>
+
+    <label>
+        <input type="radio" name="selected" value="2">
+        <span th:text="${question.optionC}"></span>
+    </label>
+
+    <label>
+        <input type="radio" name="selected" value="3">
+        <span th:text="${question.optionD}"></span>
+    </label>
+
+    <button type="submit">Next</button>
+
+</form>
+
+
+
+</body>
+</html>
+
+
+
+

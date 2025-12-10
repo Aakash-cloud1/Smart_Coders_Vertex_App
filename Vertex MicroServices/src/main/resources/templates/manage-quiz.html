@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1f2d3d;
+            margin-bottom: 12px;
+        }
+
+        .error {
+            text-align: center;
+            color: red;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 80%;
+            margin: 20px auto;
+            padding: 25px 30px;
+            border-radius: 14px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+        }
+
+        .question-block {
+            background: #f9fbff;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid #d9dee7;
+            margin-bottom: 16px;
+        }
+
+        .question-block b {
+            font-size: 16px;
+        }
+
+        hr {
+            border: none;
+            border-bottom: 1px solid #ddd;
+            margin: 12px 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        input:focus {
+            border-color: #3385ff;
+            box-shadow: 0 0 6px rgba(51,133,255,0.35);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 12px;
+            background: #3385ff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Manage Quiz [[${quizId}]]</h2>
+
+<p th:if="${error}" class="error">[[${error}]]</p>
+
+<!-- Existing Questions -->
+<div class="card">
+    <h3>Existing Questions</h3>
+
+    <div th:each="q,stat : ${questions}" class="question-block">
+        <p><b th:text="${stat.index + 1} + '. ' + ${q.text}"></b></p>
+        <p>A: <span th:text="${q.optionA}"></span></p>
+        <p>B: <span th:text="${q.optionB}"></span></p>
+        <p>C: <span th:text="${q.optionC}"></span></p>
+        <p>D: <span th:text="${q.optionD}"></span></p>
+    </div>
+
+    <div th:if="${#lists.isEmpty(questions)}">
+        <p>No questions yet.</p>
+    </div>
+</div>
+
+<!-- Add Question -->
+<div class="card">
+    <h3>Add Question</h3>
+
+    <form action="/manage-quiz/add" method="post">
+
+        <input type="hidden" name="quizId" th:value="${quizId}"/>
+
+        <label>Question:</label>
+        <input name="text" required />
+
+        <label>A:</label>
+        <input name="optionA" required />
+
+        <label>B:</label>
+        <input name="optionB" required />
+
+        <label>C:</label>
+        <input name="optionC" required />
+
+        <label>D:</label>
+        <input name="optionD" required />
+
+        <label>Correct Index (0-3):</label>
+        <input name="correctIndex" required />
+
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>
+
+
+
