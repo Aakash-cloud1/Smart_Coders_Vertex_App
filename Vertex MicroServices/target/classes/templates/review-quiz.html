@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Review Responses</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 25px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #1f2d3d;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .question-box {
+            background: #ffffff;
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .correct {
+            background: #d3ffd6;
+            border-left: 10px solid #2ecc71;
+        }
+
+        .incorrect {
+            background: #ffd4d4;
+            border-left: 10px solid #e74c3c;
+        }
+
+        .options p {
+            margin: 6px 0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #f7f7f7;
+        }
+
+        .selected {
+            border: 2px solid #3385ff;
+            background: #e8f1ff;
+        }
+
+        .correct-answer {
+            font-weight: bold;
+            color: #1f7a1f;
+        }
+
+        .wrong-answer {
+            font-weight: bold;
+            color: #b30000;
+        }
+
+        a.button-back {
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 20px;
+            background: #3385ff;
+            color: white;
+            border-radius: 8px;
+            margin-top: 25px;
+            transition: 0.25s ease;
+        }
+
+        a.button-back:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/my-attempted-quizzes" class="back-btn-fixed">Back</a>
+
+    <h2>Review Quiz Responses</h2>
+    <h3 th:text="'Quiz ID: ' + ${quizId}"></h3>
+
+    <div class="container">
+
+        <div th:each="item : ${reviewData}" th:class="'question-box ' + (${item.isCorrect} ? 'correct' : 'incorrect')">
+
+            <h3 th:text="'Q' + ${item.index} + '. ' + ${item.question.text}"></h3>
+
+            <div class="options">
+
+                <p th:class="'option ' + (${item.submittedAnswer}==1 ? 'selected' : '')">
+                    A) <span th:text="${item.question.optionA}"></span>
+                </p>
+
+                <p th:class="'option ' + (${item.submittedAnswer}==2 ? 'selected' : '')">
+                    B) <span th:text="${item.question.optionB}"></span>
+                </p>
+
+                <p th:class="'option ' + (${item.submittedAnswer}==3 ? 'selected' : '')">
+                    C) <span th:text="${item.question.optionC}"></span>
+                </p>
+
+                <p th:class="'option ' + (${item.submittedAnswer}==4 ? 'selected' : '')">
+                    D) <span th:text="${item.question.optionD}"></span>
+                </p>
+
+            </div>
+
+            <p>
+                You answered:
+                <span th:if="${item.submittedAnswer == -1}" class="wrong-answer">Not Answered</span>
+                <span th:if="${item.submittedAnswer != -1}" th:text="${'Option ' + item.submittedAnswer}"
+                    th:class="${item.isCorrect} ? 'correct-answer' : 'wrong-answer'"></span>
+            </p>
+
+            <p>
+                Correct Answer:
+                <span class="correct-answer" th:text="${'Option ' + item.question.correctIndex}"></span>
+            </p>
+        </div>
+
+        <div style="text-align:center;">
+            <a class="button-back" href="/student-dashboard">Back to Dashboard</a>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 430px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 14px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #3385ff;
+            box-shadow: 0 0 6px rgba(51, 133, 255, 0.35);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            text-align: center;
+            margin-top: 18px;
+            color: red;
+            font-size: 15px;
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="/welcome" class="back-btn-fixed">Back</a>
+
+    <h2>Register</h2>
+
+    <form action="/register" method="post">
+
+        <label>Username:</label>
+        <input name="username" required />
+
+        <label>Password:</label>
+        <input name="password" type="password" required />
+
+        <label>Role:</label>
+        <select name="role" required>
+            <option value="ADMIN">Admin</option>
+            <option value="STUDENT">Student</option>
+        </select>
+
+        <button type="submit">Register</button>
+        <p style="margin-left: 75px;">
+            Already have an account? <a href="/login" style="color: blue; text-decoration: none;">Login here</a>
+        </p>
+
+    </form>
+
+    <p class="error" th:if="${error}">[[${error}]]</p>
+
+</body>
+
+</html>

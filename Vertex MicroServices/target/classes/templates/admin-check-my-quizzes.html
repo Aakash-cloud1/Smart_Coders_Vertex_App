@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>My Quizzes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1d3557;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #457b9d;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            background: #1d3557;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #0b2033;
+        }
+
+        .back {
+            display: block;
+            width: 180px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px;
+            background: #e63946;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #c62833;
+        }
+
+        .back:hover {
+            background: #c62833;
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/admin-dashboard" class="back-btn-fixed">Back</a>
+
+    <h2>Your Created Quizzes</h2>
+
+    <table>
+        <tr>
+            <th>Quiz ID</th>
+            <th>Title</th>
+            <th>Leaderboard</th>
+        </tr>
+
+        <tr th:each="q : ${myQuizzes}">
+            <td th:text="${q.id}"></td>
+            <td th:text="${q.title}"></td>
+            <td>
+                <a th:href="@{/leaderboard(quizId=${q.id})}" class="btn">Show Leaderboard</a>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+</body>
+
+</html>

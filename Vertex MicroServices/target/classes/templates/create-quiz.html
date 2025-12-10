@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 14px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3385ff;
+            box-shadow: 0 0 6px rgba(51, 133, 255, 0.35);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="/admin-dashboard" class="back-btn-fixed">Back</a>
+
+    <h2>Create Quiz</h2>
+
+    <form action="/create-quiz" method="post">
+
+        <label>Quiz Title:</label>
+        <input name="title" th:value="${title}" required />
+
+        <label>Total Questions:</label>
+        <input name="totalQuestions" type="number" min="1" th:value="${totalQuestions}" required />
+
+        <!-- NEW instructions section -->
+        <label>Instructions:</label>
+        <textarea name="instructions" placeholder="Enter instructions for participants here... (optional)"
+            th:text="${instructions}"></textarea>
+
+        <label>Start Date:</label>
+        <input type="date" name="startDate" th:value="${startDate}" required>
+
+        <label>Start Time:</label>
+        <input type="time" name="startTime" th:value="${startTime}" required>
+
+        <label>End Date:</label>
+        <input type="date" name="endDate" th:value="${endDate}" required>
+
+        <label>End Time:</label>
+        <input type="time" name="endTime" th:value="${endTime}" required>
+
+        <p th:if="${error}" style="color:red;text-align:center;">[[${error}]]</p>
+
+        <button type="submit">Create Quiz</button>
+    </form>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Quiz Locked</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            width: 420px;
+            margin: auto;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #1f2d3d;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #555;
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            background: #3385ff;
+            color: white;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        a:hover {
+            background: #2268d8;
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/attempt-select" class="back-btn-fixed">Back</a>
+    <div class="card">
+        <h2 th:text="${message}">Quiz is locked</h2>
+        <p>You can only attempt this quiz in the allowed time window.</p>
+        <a href="/student-dashboard">Back to Dashboard</a>
+    </div>
+
+
+</body>
+
+</html>

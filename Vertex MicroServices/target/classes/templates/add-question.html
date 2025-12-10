@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #1f2d3d;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 520px;
+            background: #ffffff;
+            margin: 0 auto;
+            padding: 30px 35px;
+            border-radius: 14px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+            resize: vertical;
+            margin-top: 6px;
+            transition: 0.25s ease;
+        }
+
+        textarea:focus {
+            border-color: #3385ff;
+            box-shadow: 0 0 6px rgba(51, 133, 255, 0.35);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        input:focus {
+            border-color: #3385ff;
+            box-shadow: 0 0 6px rgba(51, 133, 255, 0.35);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: #d62828;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Add Question</h2>
+    <p class="subtitle">
+        Quiz ID: <span th:text="${quizId}"></span> &nbsp;|&nbsp;
+        Question <span th:text="${current}"></span> of <span th:text="${total}"></span>
+    </p>
+
+    <form action="/add-question" method="post">
+
+        <p th:if="${error}" class="error">[[${error}]]</p>
+
+        <label>Question Text:</label>
+        <textarea name="text" rows="3" required th:text="${text}"></textarea>
+
+        <label>Option A:</label>
+        <input type="text" name="optionA" required th:value="${optionA}" />
+
+        <label>Option B:</label>
+        <input type="text" name="optionB" required th:value="${optionB}" />
+
+        <label>Option C:</label>
+        <input type="text" name="optionC" required th:value="${optionC}" />
+
+        <label>Option D:</label>
+        <input type="text" name="optionD" required th:value="${optionD}" />
+
+        <label>Correct option index (0-3):</label>
+        <input type="number" name="correctIndex" min="0" max="3" required th:value="${correctIndex}" />
+
+        <button type="submit">Save Question</button>
+
+    </form>
+
+
+
+</body>
+
+</html>

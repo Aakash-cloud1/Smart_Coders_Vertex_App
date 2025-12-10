@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Quiz Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 14px;
+            border: 1px solid #d6d9dd;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 26px;
+            color: #1f2d3d;
+            margin-bottom: 15px;
+        }
+
+        .instructions {
+            font-size: 16px;
+            color: #333;
+            white-space: pre-wrap;
+            margin-bottom: 25px;
+        }
+
+        .meta {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        a.button {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.25s ease;
+        }
+
+        a.button:hover {
+            background: #2268d8;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #3385ff;
+            font-weight: bold;
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/attempt-select" class="back-btn-fixed">Back</a>
+
+    <div class="card">
+        <h2 th:text="${title}">Quiz</h2>
+
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <p th:text="${instructions}"></p>
+        </div>
+
+        <a th:href="@{'/start-quiz/' + ${quizId}}" class="button">Start Quiz</a>
+
+        <a href="/student-dashboard" class="back-link">Back to Dashboard</a>
+    </div>
+
+
+
+</body>
+
+</html>

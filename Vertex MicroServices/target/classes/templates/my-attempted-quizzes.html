@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>My Attempted Quizzes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f6;
+            padding: 30px;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #1f2d3d;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        th {
+            background: #3385ff;
+            color: white;
+            font-size: 17px;
+        }
+
+        tr:hover {
+            background: #f3f6fb;
+        }
+
+        a.review-btn {
+            padding: 10px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        a.review-btn:hover {
+            background: #2268d8;
+        }
+
+        .back-link {
+            display: block;
+            width: 180px;
+            margin: 25px auto;
+            padding: 12px;
+            text-align: center;
+            background: #6c757d;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .back-link:hover {
+            background: #5a6268;
+        }
+
+        .back-btn-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #3385ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-btn-fixed:hover {
+            background: #2268d8;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/student-dashboard" class="back-btn-fixed">Back</a>
+
+    <h2>My Attempted Quizzes</h2>
+
+    <table>
+        <tr>
+            <th>Quiz Title</th>
+            <th>Score</th>
+            <th>Date</th>
+            <th>Review</th>
+        </tr>
+
+        <tr th:each="v : ${attemptViews}">
+            <td th:text="${v.quizTitle}"></td>
+            <td><span th:text="${v.score}"></span> / <span th:text="${v.total}"></span></td>
+            <td th:text="${v.timestamp}"></td>
+            <td>
+                <a class="review-btn" th:href="@{'/review-quiz/' + ${v.attemptId}}">
+                    View Response
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <p th:if="${#lists.isEmpty(attemptViews)}"
+        style="text-align:center; color:#d62828; font-size:20px; margin-top:20px; font-weight:bold;">
+        You have not attempted any quiz yet.
+    </p>
+
+    <a href="/student-dashboard" class="back-link">Back to Dashboard</a>
+
+
+
+</body>
+
+</html>
