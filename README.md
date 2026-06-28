@@ -22,7 +22,7 @@ This project is designed for academic & educational demonstration and showcases 
   - Adding & saving new users
   - Generating next available user IDs
 
-### BT2024165 – Kenche Siddarth
+### BT2024165 – Kenche Siddharth
 - Developed Java files for quiz implementation (QuizController.java, QuizService.java, Question.java, Quiz.java)
 - Handled JSON-based storage for quizzes: loading, saving, updating structures
 - Contributed to FileStorage.java.
